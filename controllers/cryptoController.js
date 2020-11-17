@@ -18,7 +18,6 @@ cryptoRouter.get('/:id', (req, res) => {
     const id = parseInt(req.params.id) - 1
     const crypto = cryptos[id]
     const image = crypto.img_url
-    // image.addEventListener('mouseOver', )
     res.render('cryptids/show', { crypto, image })
 })
 

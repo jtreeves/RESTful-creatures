@@ -29,4 +29,13 @@ dinoRouter.post('/', (req, res) => {
     res.redirect('/dinosaurs')
 })
 
+dinoRouter.get('/search/:query', (req, res) => {
+    const newDino = req.body
+    const rawDinos = fs.readFileSync('./dinosaurs.json')
+    const dinos = JSON.parse(rawDinos)
+    const query = req.params.query
+    const filterDinos = dinos.filter((dino) => dino.name === query)
+    res.render('dinosaurs/index', { dinos: filterDinos})
+})
+
 module.exports = dinoRouter
