@@ -17,7 +17,7 @@ cryptoRouter.get('/:id', (req, res) => {
     const cryptos = JSON.parse(rawCryptos)
     const id = parseInt(req.params.id) - 1
     const crypto = cryptos[id]
-    const image = cryptos[img_url]
+    const image = crypto.img_url
     res.render('cryptids/show', { crypto, image })
 })
 
