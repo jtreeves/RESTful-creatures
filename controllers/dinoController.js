@@ -38,4 +38,29 @@ dinoRouter.get('/search/:query', (req, res) => {
     res.render('dinosaurs/index', { dinos: filterDinos})
 })
 
+dinoRouter.get('/edit/:id', (req, res) => {
+    const rawDinos = fs.readFileSync('./dinosaurs.json')
+    const dinos = JSON.parse(rawDinos)
+    res.render('dinosaurs/edit', { dino: dinos[req.params.id], dinoId: req.params.id })
+})
+
+dinoRouter.delete('/:id', (req, res) => {
+    const rawDinos = fs.readFileSync('./dinosaurs.json')
+    const dinos = JSON.parse(rawDinos)
+    dinos.splice(req.params.id, 1)
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinos))
+    res.redirect('/dinosaurs')
+})
+
+dinoRouter.put('/:id', (req, res) => {
+    const rawDinos = fs.readFileSync('./dinosaurs.json')
+    const dinos = JSON.parse(rawDinos)
+    // Reassign name and type of dinosaur fields being edited
+    const dinoObject = dinos[req.params.id]
+    dinoObject.name = req.body.name
+    dinoObject.type = req.body.type
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinos))
+    res.redirect('/dinosaurs')
+})
+
 module.exports = dinoRouter
