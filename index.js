@@ -3,7 +3,8 @@ const express = require('express')
 const app = express()
 const layouts = require('express-ejs-layouts') // 3rd party imports (should go first in a block)
 
-const dinoRouter = require('./controllers/dinoController') // Your imports (should go as a second block after the first one)
+const dinoRouter = require('./controllers/dinoController')
+const cryptoRouter = require('./controllers/cryptoController') // Your imports (should go as a second block after the first one)
 
 // Set Up as EJS
 app.set('view engine', 'ejs')
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/dinosaurs', dinoRouter)
+app.use('/cryptids', cryptoRouter)
 
 // Listen
 app.listen(8000, () => {
