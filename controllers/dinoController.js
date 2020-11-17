@@ -1,7 +1,7 @@
 const dinoRouter = require('express').Router()
 
 dinoRouter.get('/', (req, res) => {
-    res.send('hello from the dinos index')
+    res.render('dinosaurs/index')
 })
 
 module.exports = dinoRouter
