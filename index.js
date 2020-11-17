@@ -1,15 +1,19 @@
 // Import Modules
+// 3rd party imports (should go first in a block)
 const express = require('express')
 const app = express()
-const layouts = require('express-ejs-layouts') // 3rd party imports (should go first in a block)
+const layouts = require('express-ejs-layouts')
+const methodOverride = require('method-override')
 
+// Your imports (should go as a second block after the first one)
 const dinoRouter = require('./controllers/dinoController')
-const cryptoRouter = require('./controllers/cryptoController') // Your imports (should go as a second block after the first one)
+const cryptoRouter = require('./controllers/cryptoController') 
 
-// Set Up as EJS
+// Set Up
 app.set('view engine', 'ejs')
-app.use(layouts)
 app.use(express.urlencoded({extended: false}))
+app.use(layouts)
+app.use(methodOverride('_method'))
 
 // Establish Routes
 app.get('/', (req, res) => {
