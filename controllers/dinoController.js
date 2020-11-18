@@ -35,7 +35,7 @@ dinoRouter.get('/search/:query', (req, res) => {
     const dinos = JSON.parse(rawDinos)
     const query = req.params.query
     const filterDinos = dinos.filter((dino) => dino.name === query)
-    res.render('dinosaurs/index', { dinos: filterDinos})
+    res.render('dinosaurs/search', { dinos: filterDinos})
 })
 
 dinoRouter.get('/edit/:id', (req, res) => {
